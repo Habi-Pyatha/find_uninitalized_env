@@ -1,4 +1,12 @@
 
 require "used_env"
-puts UsedEnv.find_env_variables
+
+if ARGV.empty?
+  puts UsedEnv.find_env_variables
+end
+
+if ARGV.include?("--file")
+  puts UsedEnv.find_uninitialized_env
+end
+# puts UsedEnv.find_uninitialized_env
 

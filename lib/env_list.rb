@@ -15,6 +15,7 @@ class Env_list
     #   # +ENV[k]
     # end
     return keys
+    # puts "zebra"
   end
   
 end

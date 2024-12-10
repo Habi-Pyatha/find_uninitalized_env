@@ -1,0 +1,4 @@
+
+require "used_env"
+puts UsedEnv.find_env_variables
+

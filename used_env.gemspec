@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "used_env"
-  s.version     = "0.0.10"
+  s.version     = "0.0.13"
   s.executables = ["used_env"]
   s.summary     = "Finds the ENV variables used in Ruby files."
   s.description = <<~DESC

@@ -1,12 +1,27 @@
+# Load the current working directory
+root_path = Dir.pwd
 
+# Require the UsedEnv class and Rails environment if applicable
 require "used_env"
+require_relative "#{root_path}/config/environment"
 
+# Display usage instructions if no arguments are provided
 if ARGV.empty?
   puts UsedEnv.find_env_variables
+  exit
 end
 
-if ARGV.include?("--file")
-  puts UsedEnv.find_uninitialized_env
+# Handle command-line arguments
+case ARGV.first
+when "--valid"
+  # puts "Set ENV Variables:"
+  UsedEnv.display_envs("valid")
+when "--invalid"
+  # puts "Unset ENV Variables:"
+  UsedEnv.display_envs("invalid")
+else
+  puts "Invalid option! Use one of the following:"
+  puts "  --valid    : Display environment variables that are set"
+  puts "  --invalid  : Display environment variables that are unset"
+  exit
 end
-# puts UsedEnv.find_uninitialized_env
-

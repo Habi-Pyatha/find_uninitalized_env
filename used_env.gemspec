@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "used_env"
-  s.version     = "0.0.13"
+  s.version     = "0.0.15"
   s.executables = ["used_env"]
   s.summary     = "Finds the ENV variables used in Ruby files."
   s.description = <<~DESC
@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
       results.each do |entry|
         puts "ENV_Variable: \#{entry[:variable]} | File_path: \#{entry[:file]} | Line: \#{entry[:line]}"
       end
+      ..........used_env..........used_env --valid............used_env --invalid.............
   DESC
   s.authors = ["Habi Pyatha"]
   s.files = ["lib/used_env.rb","bin/used_env","lib/env_list.rb"]

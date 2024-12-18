@@ -1,14 +1,18 @@
 require 'optparse'
 
 class UsedEnv
-  
+    Reset= "\e[0m"
+    Green= "\e[32m"
+    Red= "\e[31m"
+    Yellow= "\e[33m"
+    
   def self.find_files
-    Dir["./**/*.{rb,html,erb}"]
+    Dir["./**/*.{rb,html,erb,yml}"]
   end
 
   def self.find_env_variables
     env_vars = []
-
+    
     find_files.each do |file|
       File.foreach(file).with_index do |line, line_num|
         next if line.strip.empty? || line.strip.start_with?('#')
@@ -28,7 +32,7 @@ class UsedEnv
 
     find_env_variables.each do |env|
       # if ENV[env[:name]]
-      value=ENV[env[:name]]
+      value = ENV[env[:name]]
       if value.nil? || value.empty?
         categorized[:unset] << env
       else
@@ -41,14 +45,13 @@ class UsedEnv
 
   def self.display_envs(check)
     categorized = categorize_env_variables
-
     case check
     when 'valid'
       puts "Set ENV Variables:"
-      categorized[:set].each { |env| puts "#{env[:name]} - #{env[:file]}:#{env[:line]} " }
+      categorized[:set].each { |env| puts "#{Green}#{env[:name]} -#{Yellow} #{env[:file]}:#{env[:line]} #{Reset} " }
     when 'invalid'
       puts "Unset ENV Variables:"
-      categorized[:unset].each { |env| puts "#{env[:name]} - #{env[:file]}:#{env[:line]} " }
+      categorized[:unset].each { |env| puts "#{Red}#{env[:name]} -#{Yellow} #{env[:file]}:#{env[:line]} #{Reset}" }
     else
       puts "Invalid option! Use 'valid' or 'invalid'."
     end

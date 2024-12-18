@@ -1,4 +1,4 @@
 ENV['RAILS_ENV']
-ENV['SECRET_KEY_BASE']
+ENV['SECRET_KEY_BASE']="secrect"
 ENV['MISSING_VAR']
 ENV.fetch('EXISTING_VAR', 'default')
